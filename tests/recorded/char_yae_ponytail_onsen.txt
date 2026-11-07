@@ -1,0 +1,13 @@
+rating: nsfw
+count: 1girl
+character: yae miko
+series: genshin impact
+appearance: ponytail, nude
+emotion: blush, light smile
+state: steam, wet, steaming body
+action: sitting, bathing, partially submerged
+location: onsen, outdoors
+environment: night, rock, water, lantern, steam
+angle: upper body
+lighting: candlelight
+description: Yae Miko, with her hair in a ponytail, relaxes in a hot spring at night. Her skin is flushed and wet as steam rises around her in the dim light.

@@ -1,0 +1,11 @@
+rating: nsfw
+count: 1girl
+appearance: nude, wet skin, wet hair
+emotion: closed mouth, expressionless
+state: wet, water droplets, steam
+action: standing, looking away, showering
+location: indoors, shower
+environment: shower, water, steam, tiles
+angle: from side, full body
+lighting: dim lighting
+description: A nude woman stands under a stream of water in a steamy shower. Water droplets run down her wet skin as she looks away from the camera.

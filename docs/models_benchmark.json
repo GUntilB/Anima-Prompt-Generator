@@ -1,0 +1,52 @@
+{
+  "setup": {
+    "date": "2026-11-06",
+    "gpu": "NVIDIA GeForce RTX 3060 12 GB",
+    "ram": "32 GB DDR5",
+    "server": "LM Studio",
+    "temperature": 0.5,
+    "seed": 0,
+    "thinking": "off",
+    "llm_cases": 23,
+    "fixture_cases": 12,
+    "note": "Times include the request to the server; the first case of every run also includes loading the model."
+  },
+  "models": [
+    {
+      "id": "gemma26b",
+      "name": "Gemma 4 26B-A4B (QAT)",
+      "lm_studio_key": "google/gemma-4-26b-a4b-qat",
+      "file_gb": 15.6,
+      "passed": 23,
+      "median_s": 4.8,
+      "mean_s": 5.5,
+      "failed": []
+    },
+    {
+      "id": "gemma12b",
+      "name": "Gemma 4 12B (QAT)",
+      "lm_studio_key": "google/gemma-4-12b-qat",
+      "file_gb": 7.2,
+      "passed": 23,
+      "median_s": 3.5,
+      "mean_s": 4.6,
+      "failed": []
+    },
+    {
+      "id": "qwen8b",
+      "name": "Qwen3 8B abliterated v2",
+      "lm_studio_key": "huihui-qwen3-8b-abliterated-v2",
+      "file_gb": 5.0,
+      "passed": 18,
+      "median_s": 10.5,
+      "mean_s": 12.2,
+      "failed": [
+        "char_yae_rain",
+        "multi_two_girls",
+        "long_detailed_request",
+        "sfw_nude_request",
+        "sfw_explicit_request"
+      ]
+    }
+  ]
+}

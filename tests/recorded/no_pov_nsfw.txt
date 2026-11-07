@@ -1,0 +1,10 @@
+rating: nsfw
+count: 1girl
+appearance: nude
+emotion: smile, light smile
+action: lying, looking at viewer
+location: bedroom
+environment: bed, pillow, sheet, indoors
+angle: from above, cowboy shot
+lighting: soft lighting
+description: A naked woman lies on a bed, looking up at the viewer with a gentle smile. She is resting against soft pillows and white sheets in a bedroom.

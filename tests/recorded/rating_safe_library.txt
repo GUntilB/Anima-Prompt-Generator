@@ -1,0 +1,10 @@
+rating: safe
+count: 1girl
+appearance: long hair, eyes, dress, sitting
+emotion: serious, closed mouth
+action: reading, holding book, sitting, looking down
+location: library
+environment: bookshelf, book, indoor, table
+angle: from side, upper body
+lighting: dim lighting, light rays
+description: A young woman sits quietly in a library, deeply focused on reading a book. Sunlight filters through the bookshelves, illuminating the dust motes in the air.

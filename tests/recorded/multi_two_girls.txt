@@ -1,0 +1,11 @@
+rating: safe
+count: 2girls
+character: yae miko, raiden shogun
+series: genshin impact
+emotion: smile, light smile
+action: sitting, sitting side by side, holding cup, drinking, looking at another
+location: outdoors
+environment: tea set, table, grass, flower
+angle: straight-on, cowboy shot
+lighting: sunlight
+description: Yae Miko and Raiden Shogun sit side by side in a beautiful garden, enjoying tea together. They share a quiet moment under the warm sunlight.

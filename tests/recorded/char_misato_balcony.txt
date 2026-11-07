@@ -1,0 +1,12 @@
+rating: safe
+count: 1girl
+character: misato katsuragi
+series: evangelion
+appearance: long hair, purple hair
+emotion: smile, relaxed
+action: drinking, holding bottle, sitting, looking at viewer
+location: balcony
+environment: apartment, city, night, sky
+angle: upper body
+lighting: moonlight, city lights
+description: Misato Katsuragi relaxes on her balcony at night, enjoying a bottle of beer. The city lights glow in the background under the moonlight.

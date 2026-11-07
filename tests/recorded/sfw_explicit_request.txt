@@ -1,0 +1,10 @@
+rating: safe
+count: 1girl, 1boy
+appearance: bed sheets, pajamas
+emotion: smile, blush
+action: hugging, lying, looking at another
+location: indoors, bedroom
+environment: bed, pillow, blanket
+angle: from side
+lighting: dim lighting
+description: An adult couple shares a tender moment while lying in bed together. They are wrapped in soft blankets and look at each other with gentle smiles.

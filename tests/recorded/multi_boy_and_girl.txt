@@ -1,0 +1,11 @@
+rating: safe
+count: 1girl, 1boy
+character: yae miko
+series: genshin impact
+emotion: smile
+action: hug, standing, looking at viewer
+location: outdoors
+environment: tree, grass, flower
+angle: cowboy shot
+lighting: sunlight
+description: Yae Miko and an adult man are hugging in a lush outdoor setting. They share a warm moment under the bright sunlight.

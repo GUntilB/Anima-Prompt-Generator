@@ -1,0 +1,23 @@
+[project]
+name = "anima-prompt-generator"
+description = "Turns a short idea into a checked Danbooru-tag prompt for the Anima image model: a local LLM writes the tags, a builder validates them against a dictionary and assembles the prompt."
+version = "0.1.0"
+license = { file = "LICENSE" }
+readme = "README.md"
+authors = [{ name = "GUntilB" }]
+requires-python = ">=3.9"
+dependencies = []
+classifiers = [
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Repository = "https://github.com/GUntilB/Anima-Prompt-Generator"
+Documentation = "https://github.com/GUntilB/Anima-Prompt-Generator#readme"
+"Bug Tracker" = "https://github.com/GUntilB/Anima-Prompt-Generator/issues"
+
+[tool.comfy]
+# Icon is still empty; fill it in before `comfy node publish` (step 6 of the roadmap)
+PublisherId = "guntilb"
+DisplayName = "Anima Prompt Generator"
+Icon = ""

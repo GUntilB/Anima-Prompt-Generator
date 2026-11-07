@@ -1,0 +1,10 @@
+rating: sensitive
+count: 1girl
+appearance: bikini, mature female
+emotion: smile
+action: standing, looking at viewer
+location: poolside, outdoors
+environment: pool, water, summer, blue sky
+angle: cowboy shot
+lighting: sunlight
+description: An adult woman in a swimsuit stands by a sparkling pool on a bright summer day. She looks at the viewer with a happy smile under the clear blue sky.

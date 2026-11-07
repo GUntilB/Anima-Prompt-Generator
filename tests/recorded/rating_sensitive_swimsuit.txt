@@ -1,0 +1,10 @@
+rating: safe
+count: 1girl
+appearance: bikini, swimwear
+emotion: smile, light smile
+action: standing, looking at viewer
+location: beach, seaside
+environment: ocean, sand, sky, waves, summer
+angle: full body
+lighting: sunlight
+description: A young woman in a bikini stands on a beautiful sandy beach. She smiles at the viewer with the ocean waves and bright sunlight in the background.

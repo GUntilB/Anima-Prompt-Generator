@@ -1,0 +1,10 @@
+rating: safe
+count: 1girl
+appearance: long hair, black hair, glasses, sweater
+emotion: smile, light smile
+action: sitting, head tilt, looking at viewer
+location: indoors, room
+environment: table, laptop, coffee cup, cup, window, rain, lamp, desk lamp
+angle: upper body
+lighting: dim lighting, candlelight
+description: A woman with long black hair and glasses sits at a table in a cozy room. She smiles and tilts her head while looking at the viewer, with a lamp glowing on her desk as rain falls outside the window.

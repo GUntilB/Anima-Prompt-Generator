@@ -1,0 +1,10 @@
+rating: sensitive
+count: 1girl
+appearance: mature female
+emotion: expressionless
+action: standing, looking at viewer
+location: bathroom
+environment: bathtub, sink, tile, indoor
+angle: full body
+lighting: dim lighting
+description: An adult woman stands in a dimly lit bathroom. The scene is captured in a quiet, indoor setting.

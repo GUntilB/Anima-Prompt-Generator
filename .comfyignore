@@ -1,0 +1,9 @@
+# files that are not needed to run the nodes
+tests/
+tools/
+.cache/
+__pycache__/
+*.pyc
+data/auto/*.backup.csv
+data/auto/tags_extra.csv
+docs/

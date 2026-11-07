@@ -1,0 +1,10 @@
+rating: safe
+count: 1girl
+appearance: short hair, pink hair, green eyes, red dress, tall female
+emotion: smile
+action: standing, looking at viewer
+location: bridge
+environment: sky, water, river
+angle: full body, straight-on
+lighting: sunlight
+description: A tall girl with short pink hair and green eyes stands on a bridge. She wears a red dress and smiles at the viewer under the bright sunlight.

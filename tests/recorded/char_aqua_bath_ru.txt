@@ -1,0 +1,11 @@
+rating: sensitive
+count: 1girl
+character: aqua (konosuba)
+emotion: embarrassed, blush, crying
+state: wet, steam, water, bubbles
+action: sitting, bathing, looking at viewer
+location: bathroom, indoors
+environment: bathtub, water, bubbles, steam
+angle: upper body, from above
+lighting: dim lighting
+description: Aqua sits in a bathtub filled with bubbles, her face flushed with embarrassment. Steam rises around her as she looks at the viewer with tearful, blushing eyes.

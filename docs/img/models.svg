@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="306" viewBox="0 0 860 306" role="img" aria-labelledby="t d" font-family="Segoe UI, Arial, sans-serif">
+<title id="t">Model comparison on the project test cases</title><desc id="d">Bar charts: cases passed and median answer time for each tested model.</desc>
+<rect x="0.5" y="0.5" width="859" height="305" rx="10" fill="#ffffff" stroke="#d0d5dd"/>
+<text x="24" y="34" font-size="18" font-weight="600" fill="#1f2933">Model comparison on the project test cases</text>
+<text x="270" y="72" font-size="13" fill="#5f6b7a">Cases passed (23)</text>
+<text x="580" y="72" font-size="13" fill="#5f6b7a">Median answer time</text>
+<text x="24" y="111" font-size="14" fill="#1f2933">Gemma 4 26B-A4B (QAT)</text>
+<text x="24" y="129" font-size="12" fill="#5f6b7a">15.6 GB</text>
+<rect x="270" y="96" width="190" height="26" rx="4" fill="#e6e9ee"/>
+<rect x="270" y="96" width="190.0" height="26" rx="4" fill="#2e8b57"/>
+<text x="470" y="114" font-size="14" font-weight="600" fill="#1f2933">23/23</text>
+<rect x="580" y="96" width="200" height="26" rx="4" fill="#e6e9ee"/>
+<rect x="580" y="96" width="79.5" height="26" rx="4" fill="#4a6fa5"/>
+<text x="790" y="114" font-size="14" font-weight="600" fill="#1f2933">4.8 s</text>
+<text x="24" y="163" font-size="14" fill="#1f2933">Gemma 4 12B (QAT)</text>
+<text x="24" y="181" font-size="12" fill="#5f6b7a">7.2 GB</text>
+<rect x="270" y="148" width="190" height="26" rx="4" fill="#e6e9ee"/>
+<rect x="270" y="148" width="190.0" height="26" rx="4" fill="#2e8b57"/>
+<text x="470" y="166" font-size="14" font-weight="600" fill="#1f2933">23/23</text>
+<rect x="580" y="148" width="200" height="26" rx="4" fill="#e6e9ee"/>
+<rect x="580" y="148" width="58.0" height="26" rx="4" fill="#4a6fa5"/>
+<text x="790" y="166" font-size="14" font-weight="600" fill="#1f2933">3.5 s</text>
+<text x="24" y="215" font-size="14" fill="#1f2933">Qwen3 8B abliterated v2</text>
+<text x="24" y="233" font-size="12" fill="#5f6b7a">5.0 GB</text>
+<rect x="270" y="200" width="190" height="26" rx="4" fill="#e6e9ee"/>
+<rect x="270" y="200" width="148.7" height="26" rx="4" fill="#d98e04"/>
+<text x="470" y="218" font-size="14" font-weight="600" fill="#1f2933">18/23</text>
+<rect x="580" y="200" width="200" height="26" rx="4" fill="#e6e9ee"/>
+<rect x="580" y="200" width="173.9" height="26" rx="4" fill="#4a6fa5"/>
+<text x="790" y="218" font-size="14" font-weight="600" fill="#1f2933">10.5 s</text>
+<text x="24" y="288" font-size="12" fill="#5f6b7a">NVIDIA GeForce RTX 3060 12 GB, 32 GB DDR5, LM Studio, temperature 0.5, 23 cases that call the LLM</text>
+</svg>

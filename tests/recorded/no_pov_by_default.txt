@@ -1,0 +1,10 @@
+rating: safe
+count: 1girl
+appearance: long hair, eyes, dress
+emotion: smile
+action: standing, looking at viewer
+location: outdoors, park
+environment: tree, grass, flower, sunlight
+angle: portrait, upper body
+lighting: sunlight, dappled sunlight
+description: A young woman smiles brightly while standing in a lush park. Sunlight filters through the trees, creating a beautiful atmosphere around her.

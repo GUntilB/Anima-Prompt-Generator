@@ -1,0 +1,11 @@
+rating: safe
+count: 1girl
+character: tohsaka rin
+series: fate/stay night
+emotion: smile
+action: holding cup, holding tea, looking at viewer
+location: indoors
+environment: table, cup, tea
+angle: upper body
+lighting: sunlight
+description: Tohsaka Rin smiles warmly as she holds a cup of tea in her hands. She looks directly at the viewer in a cozy indoor setting.

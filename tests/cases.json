@@ -1,0 +1,433 @@
+{
+  "defaults": {
+    "quality": "masterpiece, best quality, score_7",
+    "artist": "@artist",
+    "model": "google/gemma-4-26b-a4b-qat",
+    "default_rating": "nsfw",
+    "max_removed": 4
+  },
+  "cases": [
+    {
+      "id": "fixture_think_leak",
+      "fixture": "<think>rating: safe\ncount: 2girls\nappearance: junk tag\ndescription: draft</think>\nrating: safe\ncount: 1girl\nappearance: long hair\ndescription: A girl stands.",
+      "must_contain": [
+        "1girl"
+      ],
+      "must_not_contain": [
+        "2girls",
+        "junk tag"
+      ]
+    },
+    {
+      "id": "fixture_character_series",
+      "fixture": "rating: safe\ncount: 1girl\ncharacter: yae miko\nseries: genshin impact\naction: sitting\ndescription: Yae Miko sits.",
+      "must_contain_substr": [
+        "yae miko"
+      ]
+    },
+    {
+      "id": "fixture_fake_tags_removed",
+      "fixture": "rating: safe\ncount: 1girl\nangle: from front, looking at viewer\ndescription: A girl looks ahead.",
+      "must_contain": [
+        "looking at viewer"
+      ],
+      "must_not_contain": [
+        "from front"
+      ]
+    },
+    {
+      "id": "fixture_bare_count_line",
+      "fixture": "rating: safe\n1girl\nemotion: smile\ndescription: A girl smiles.",
+      "must_contain": [
+        "1girl",
+        "smile"
+      ]
+    },
+    {
+      "id": "fixture_count_man_woman",
+      "fixture": "rating: safe\ncount: 1man, 1woman\naction: hugging\ndescription: A man and a woman hug.",
+      "must_contain": [
+        "1girl",
+        "1boy"
+      ],
+      "must_not_contain": [
+        "1man",
+        "1woman"
+      ]
+    },
+    {
+      "id": "fixture_character_name_order",
+      "fixture": "rating: safe\ncount: 1girl\ncharacter: misato katsuragi\nseries: evangelion\naction: sitting\ndescription: Misato sits.",
+      "must_contain": [
+        "katsuragi misato"
+      ],
+      "must_not_contain": [
+        "misato katsuragi"
+      ]
+    },
+    {
+      "id": "fixture_no_wrong_fuzzy",
+      "fixture": "rating: safe\ncount: 1girl\nlocation: cafe\nenvironment: cafe interior, table\ndescription: A girl in a cafe.",
+      "must_contain": [
+        "cafe"
+      ],
+      "must_not_contain": [
+        "cave interior"
+      ]
+    },
+    {
+      "id": "fixture_hyphen_tag",
+      "fixture": "rating: safe\ncount: 1girl\nangle: close up, from front\ndescription: A close portrait.",
+      "must_contain": [
+        "close-up",
+        "straight-on"
+      ]
+    },
+    {
+      "id": "fixture_canonical_color_stripped",
+      "fixture": "rating: safe\ncount: 1girl\ncharacter: yae miko\nseries: genshin impact\nappearance: pink hair, ponytail, blue eyes\ndescription: Yae Miko with a ponytail.",
+      "must_contain": [
+        "ponytail"
+      ],
+      "must_not_contain": [
+        "pink hair",
+        "blue eyes"
+      ]
+    },
+    {
+      "id": "fixture_color_kept_without_character",
+      "fixture": "rating: safe\ncount: 1girl\nappearance: pink hair, green eyes\ndescription: A girl with pink hair.",
+      "must_contain": [
+        "pink hair",
+        "green eyes"
+      ]
+    },
+    {
+      "id": "fixture_fuzzy_not_character",
+      "fixture": "rating: safe\ncount: 1girl\nenvironment: sheet, bed\ndescription: A bed with a sheet.",
+      "must_contain": [
+        "bed"
+      ],
+      "must_not_contain": [
+        "sheeta"
+      ]
+    },
+    {
+      "id": "fixture_gaze_goes_to_action",
+      "fixture": "rating: safe\ncount: 1girl\nemotion: smile, looking at viewer\naction: sitting\nangle: from side, looking at another\ndescription: A girl smiles.",
+      "must_contain": [
+        "smile",
+        "sitting",
+        "from side"
+      ],
+      "same_block": [
+        [
+          "sitting",
+          "looking at viewer",
+          "looking at another"
+        ]
+      ]
+    },
+    {
+      "id": "no_pov_by_default",
+      "idea": "Девушка улыбается в парке",
+      "must_contain": [
+        "1girl"
+      ],
+      "must_not_contain": [
+        "pov",
+        "pov hands"
+      ]
+    },
+    {
+      "id": "no_pov_nsfw",
+      "idea": "Обнажённая девушка лежит на кровати и смотрит в камеру",
+      "rating_in": [
+        "nsfw",
+        "explicit"
+      ],
+      "must_contain": [
+        "1girl"
+      ],
+      "must_not_contain": [
+        "pov",
+        "pov hands"
+      ]
+    },
+    {
+      "id": "rating_safe_library",
+      "idea": "Девушка читает книгу в библиотеке",
+      "rating_in": [
+        "safe"
+      ],
+      "must_contain": [
+        "1girl"
+      ],
+      "must_contain_any_substr": [
+        "book",
+        "library"
+      ]
+    },
+    {
+      "id": "rating_sensitive_swimsuit",
+      "idea": "Девушка в купальнике на пляже",
+      "rating_in": [
+        "safe",
+        "sensitive"
+      ],
+      "must_contain": [
+        "1girl"
+      ],
+      "must_contain_any_substr": [
+        "swimsuit",
+        "bikini"
+      ]
+    },
+    {
+      "id": "rating_nsfw_shower",
+      "idea": "Обнажённая девушка принимает душ, вид сбоку",
+      "rating_in": [
+        "nsfw",
+        "explicit"
+      ],
+      "must_contain": [
+        "1girl"
+      ],
+      "must_contain_any_substr": [
+        "nude"
+      ]
+    },
+    {
+      "id": "rating_explicit_couple",
+      "idea": "Взрослая пара занимается сексом в спальне",
+      "rating_in": [
+        "explicit"
+      ],
+      "must_contain": [
+        "1girl",
+        "1boy"
+      ]
+    },
+    {
+      "id": "nochar_full_description",
+      "idea": "Высокая девушка с короткими розовыми волосами и зелёными глазами в красном платье стоит на мосту",
+      "must_contain": [
+        "1girl",
+        "pink hair",
+        "green eyes"
+      ],
+      "must_contain_any_substr": [
+        "dress"
+      ]
+    },
+    {
+      "id": "nochar_one_boy",
+      "idea": "Взрослый мужчина в костюме пьёт кофе в кафе",
+      "must_contain": [
+        "1boy"
+      ],
+      "must_not_contain": [
+        "1girl"
+      ]
+    },
+    {
+      "id": "char_yae_rain",
+      "idea": "Yae Miko сидит на скамейке под дождём",
+      "rating_in": [
+        "safe",
+        "sensitive"
+      ],
+      "must_contain": [
+        "1girl"
+      ],
+      "must_contain_substr": [
+        "yae miko"
+      ],
+      "must_contain_any_substr": [
+        "genshin"
+      ],
+      "forbid_canonical_appearance": true
+    },
+    {
+      "id": "char_yae_swimsuit",
+      "idea": "Yae Miko в купальнике на пляже",
+      "must_contain_substr": [
+        "yae miko"
+      ],
+      "must_contain_any_substr": [
+        "swimsuit",
+        "bikini"
+      ],
+      "forbid_canonical_appearance": true
+    },
+    {
+      "id": "char_yae_ponytail_onsen",
+      "idea": "Yae Miko с хвостиком, без одежды, в горячем источнике",
+      "rating_in": [
+        "nsfw",
+        "explicit"
+      ],
+      "must_contain": [
+        "ponytail"
+      ],
+      "must_contain_substr": [
+        "yae miko"
+      ],
+      "must_contain_any_substr": [
+        "nude"
+      ],
+      "forbid_canonical_appearance": true
+    },
+    {
+      "id": "char_rem_window",
+      "idea": "Rem из Re:Zero сидит у окна",
+      "must_contain_substr": [
+        "rem (re"
+      ],
+      "forbid_canonical_appearance": true
+    },
+    {
+      "id": "char_tohsaka_rin_tea",
+      "idea": "Tohsaka Rin из Fate держит чашку чая",
+      "must_contain_substr": [
+        "tohsaka rin"
+      ],
+      "must_contain_any_substr": [
+        "fate"
+      ],
+      "forbid_canonical_appearance": true
+    },
+    {
+      "id": "char_misato_balcony",
+      "idea": "Misato Katsuragi пьёт пиво на балконе",
+      "must_contain_substr": [
+        "misato"
+      ],
+      "forbid_canonical_appearance": true
+    },
+    {
+      "id": "char_aqua_bath_ru",
+      "idea": "Aqua из Konosuba в ванной, смущённая",
+      "must_contain_substr": [
+        "aqua (konosuba)"
+      ],
+      "must_contain_any_substr": [
+        "bath"
+      ],
+      "must_contain": [
+        "blush"
+      ],
+      "forbid_canonical_appearance": true
+    },
+    {
+      "id": "char_aqua_bath_en",
+      "idea": "Aqua from Konosuba in a bathtub, embarrassed",
+      "must_contain_substr": [
+        "aqua (konosuba)"
+      ],
+      "must_contain_any_substr": [
+        "bath"
+      ],
+      "forbid_canonical_appearance": true
+    },
+    {
+      "id": "multi_two_girls",
+      "idea": "Yae Miko и Raiden Shogun сидят рядом и пьют чай",
+      "must_contain": [
+        "2girls"
+      ],
+      "must_contain_substr": [
+        "yae miko",
+        "raiden shogun"
+      ]
+    },
+    {
+      "id": "multi_boy_and_girl",
+      "idea": "Взрослый мужчина и Yae Miko обнимаются",
+      "must_contain": [
+        "1girl",
+        "1boy"
+      ],
+      "must_contain_substr": [
+        "yae miko"
+      ]
+    },
+    {
+      "id": "short_two_words",
+      "idea": "девушка ночью",
+      "must_contain": [
+        "1girl"
+      ],
+      "must_contain_any_substr": [
+        "night"
+      ]
+    },
+    {
+      "id": "long_detailed_request",
+      "idea": "Взрослая девушка с длинными чёрными волосами и в очках сидит за столом в уютной комнате. Перед ней ноутбук и чашка кофе. За окном идёт дождь, на столе горит лампа. Она улыбается и смотрит в камеру, чуть наклонив голову.",
+      "max_removed": 6,
+      "must_contain": [
+        "1girl",
+        "black hair",
+        "long hair",
+        "glasses"
+      ],
+      "must_contain_any_substr": [
+        "rain",
+        "window"
+      ]
+    },
+    {
+      "id": "sfw_nude_request",
+      "profile": "sfw",
+      "default_rating": "safe",
+      "idea": "adult woman, completely nude, standing in a bathroom",
+      "rating_in": [
+        "safe",
+        "sensitive"
+      ],
+      "must_contain": [
+        "1girl"
+      ],
+      "must_not_contain": [
+        "nude",
+        "completely nude",
+        "topless",
+        "nipples"
+      ]
+    },
+    {
+      "id": "sfw_explicit_request",
+      "profile": "sfw",
+      "default_rating": "safe",
+      "idea": "adult couple having sex in bed",
+      "rating_in": [
+        "safe",
+        "sensitive"
+      ],
+      "must_not_contain": [
+        "sex",
+        "nude",
+        "completely nude",
+        "nipples"
+      ]
+    },
+    {
+      "id": "sfw_swimsuit_pool",
+      "profile": "sfw",
+      "default_rating": "safe",
+      "idea": "adult woman in a swimsuit by the pool, smiling, summer day",
+      "rating_in": [
+        "safe",
+        "sensitive"
+      ],
+      "must_contain": [
+        "1girl"
+      ],
+      "must_contain_any_substr": [
+        "swimsuit",
+        "bikini"
+      ]
+    }
+  ]
+}

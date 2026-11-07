@@ -1,0 +1,10 @@
+rating: safe
+count: 1boy
+appearance: suit, formal, black suit, tie, short hair
+emotion: serious
+action: sitting, drinking, holding cup, holding coffee cup, looking at viewer
+location: cafe, indoors
+environment: table, cup, coffee, window, cafe interior
+angle: upper body, side view
+lighting: dim lighting
+description: An adult man in a formal suit sits at a cafe table. He is drinking coffee and looking toward the viewer in a dimly lit indoor setting.

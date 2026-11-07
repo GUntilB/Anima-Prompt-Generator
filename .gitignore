@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.cache/
+lmstudio_cache.json
+tests/last_run*.txt
+data/auto/*.backup.csv
+data/auto/tags_extra.csv

@@ -1,0 +1,11 @@
+rating: safe
+count: 1girl
+character: yae miko
+series: genshin impact
+emotion: expressionless
+action: sitting, looking at viewer
+location: outdoors, park
+environment: bench, rain, puddle, wet, street, sky
+angle: full body
+lighting: dim lighting
+description: Yae Miko sits alone on a wooden bench during a rainstorm. Rain falls around her as she gazes at the viewer with a calm expression.

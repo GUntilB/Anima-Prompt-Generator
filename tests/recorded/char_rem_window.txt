@@ -1,0 +1,10 @@
+rating: safe
+count: 1girl
+character: rem (re:zero)
+emotion: smile, closed mouth
+action: sitting, looking at viewer
+location: indoors
+environment: window, curtain, indoor
+angle: side view, upper body
+lighting: sunlight, light rays
+description: Rem sits quietly by a window, gazing at the viewer with a gentle smile. Soft sunlight streams through the window, illuminating her face.

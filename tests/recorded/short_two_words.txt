@@ -1,0 +1,10 @@
+rating: safe
+count: 1girl
+appearance: long hair, eyes, clothing
+emotion: expressionless
+action: standing, looking at viewer
+location: outdoors
+environment: night, sky, moon, stars
+angle: full body
+lighting: moonlight
+description: A young woman stands alone under the night sky. The moonlight illuminates her silhouette against the dark background of stars.

@@ -1,0 +1,12 @@
+rating: sensitive
+count: 1girl
+character: yae miko
+series: genshin impact
+appearance: bikini, swimwear
+emotion: smile, light smile
+action: standing, looking at viewer, sitting
+location: beach, seaside
+environment: ocean, sand, waves, sky, summer
+angle: full body
+lighting: sunlight
+description: Yae Miko wears a bikini while standing on a beautiful sunny beach. She smiles at the viewer with the ocean waves crashing in the background.
