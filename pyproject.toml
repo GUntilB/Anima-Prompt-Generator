@@ -20,4 +20,3 @@ Documentation = "https://github.com/GUntilB/Anima-Prompt-Generator#readme"
 # Icon is still empty; fill it in before `comfy node publish` (step 6 of the roadmap)
 PublisherId = "guntilb"
 DisplayName = "Anima Prompt Generator"
-Icon = ""
