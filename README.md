@@ -122,7 +122,7 @@ How to read this:
 
 ## Installation
 
-1. Put the folder `Anima-Prompt-Generator` into `ComfyUI/custom_nodes/` (download the ZIP or run `git clone https://github.com/GUntilB/Anima-Prompt-Generator` there) and restart ComfyUI. Installation from the ComfyUI Registry will be added with the first release.
+1. Put the folder `Anima-Prompt-Generator` into `ComfyUI/custom_nodes/` (download the ZIP or run `git clone https://github.com/GUntilB/Anima-Prompt-Generator` there) and restart ComfyUI. Or install it from the ComfyUI Registry: search for "Anima Prompt Generator" in ComfyUI Manager, or run.
 2. Install LM Studio, download a model and start the local server (the Developer tab). The default address is `http://127.0.0.1:1234`.
 3. Put the Anima model files into your ComfyUI model folders (the example workflow lists them).
 

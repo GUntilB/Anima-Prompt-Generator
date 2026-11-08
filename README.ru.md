@@ -122,7 +122,7 @@ alias: relaxed -> relaxing
 
 ## Установка
 
-1. Положи папку `Anima-Prompt-Generator` в `ComfyUI/custom_nodes/` (скачай ZIP или выполни там `git clone https://github.com/GUntilB/Anima-Prompt-Generator`) и перезапусти ComfyUI. Установка из ComfyUI Registry появится с первым релизом.
+1. Положи папку `Anima-Prompt-Generator` в `ComfyUI/custom_nodes/` (скачай ZIP или выполни там `git clone https://github.com/GUntilB/Anima-Prompt-Generator`) и перезапусти ComfyUI. Или установи из ComfyUI Registry: найди «Anima Prompt Generator» в ComfyUI Manager или выполни comfy node install anima-prompt-generator.
 2. Установи LM Studio, скачай модель и запусти локальный сервер (вкладка Developer). Адрес по умолчанию `http://127.0.0.1:1234`.
 3. Положи файлы модели Anima в папки моделей ComfyUI (в примере workflow они перечислены).
 
