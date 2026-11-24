@@ -250,7 +250,7 @@ class AnimaLMStudio:
     RETURN_TYPES = ("STRING", "STRING")
     RETURN_NAMES = ("llm_text", "status")
     FUNCTION = "run"
-    CATEGORY = "anima"
+    CATEGORY = "Anima Prompt Generator"
 
     def run(self, idea, system_prompt, model, temperature, unload_after,
             use_cache, seed, server_url, max_tokens=1024, context_length=8192,

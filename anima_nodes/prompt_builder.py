@@ -15,6 +15,7 @@ import csv
 import difflib
 import os
 import re
+import threading
 
 from .messages import msg
 from .paths import AUTO_DIR, MANUAL_DIR
@@ -100,10 +101,16 @@ def _load():
     return tags, aliases, counts
 
 
-TAGS, ALIASES, COUNTS = _load()
-TAG_LIST = list(TAGS)
-# "close up" -> "close-up": the LLM writes the hyphen as a space
-TAG_ALT = {t.replace("-", " "): t for t in TAG_LIST if "-" in t and t.replace("-", " ") not in TAGS}
+# The dictionary containers below are filled in place by _rebuild(), so every function that
+# uses them sees the new data after a reload. Files are re-read when they change on disk
+# (after the updater ran, or after a manual edit): at the start of each run and on R.
+TAGS, ALIASES, COUNTS = {}, {}, {}
+TAG_LIST = []
+TAG_ALT = {}          # "close up" -> "close-up": the LLM writes the hyphen as a space
+BUCKET_ALL, BUCKET_GENERAL, BUCKET_CHAR, BUCKET_COPY = {}, {}, {}, {}
+CHAR_BASE = {}        # "aqua" -> [("aqua (konosuba)", "konosuba"), ("aqua (arknights)", "arknights"), ...]
+_STAMP = None
+_RELOAD_LOCK = threading.Lock()
 
 
 def _bucket(names):
@@ -113,18 +120,72 @@ def _bucket(names):
     return b
 
 
-BUCKET_ALL = _bucket(TAG_LIST)
-BUCKET_GENERAL = _bucket([t for t, c in TAGS.items() if c == 0])
-BUCKET_CHAR = _bucket([t for t, c in TAGS.items() if c == CAT_CHARACTER])
-BUCKET_COPY = _bucket([t for t, c in TAGS.items() if c == CAT_COPYRIGHT])
+def _replace(target, new):
+    target.clear()
+    target.update(new)
 
-# "aqua" -> [("aqua (konosuba)", "konosuba"), ("aqua (arknights)", "arknights"), ...]
-CHAR_BASE = {}
-for _t, _c in TAGS.items():
-    if _c == CAT_CHARACTER:
-        _m = CHAR_PAREN_RE.match(_t)
-        if _m:
-            CHAR_BASE.setdefault(_m.group(1), []).append((_t, _m.group(2)))
+
+def _data_stamp():
+    """(path, modification time, size) of the four data files: changes when any of them changes."""
+    out = []
+    for name in ("tags.csv", "aliases.csv"):
+        for folder in (AUTO_DIR, MANUAL_DIR):
+            path = os.path.join(folder, name)
+            try:
+                st = os.stat(path)
+                out.append((path, st.st_mtime_ns, st.st_size))
+            except OSError:
+                out.append((path, None, None))
+    return tuple(out)
+
+
+def _rebuild():
+    tags, aliases, counts = _load()
+    _replace(TAGS, tags)
+    _replace(ALIASES, aliases)
+    _replace(COUNTS, counts)
+    TAG_LIST[:] = list(tags)
+    _replace(TAG_ALT, {t.replace("-", " "): t for t in TAG_LIST
+                       if "-" in t and t.replace("-", " ") not in tags})
+    _replace(BUCKET_ALL, _bucket(TAG_LIST))
+    _replace(BUCKET_GENERAL, _bucket([t for t, c in tags.items() if c == 0]))
+    _replace(BUCKET_CHAR, _bucket([t for t, c in tags.items() if c == CAT_CHARACTER]))
+    _replace(BUCKET_COPY, _bucket([t for t, c in tags.items() if c == CAT_COPYRIGHT]))
+    chars = {}
+    for t, c in tags.items():
+        if c == CAT_CHARACTER:
+            m = CHAR_PAREN_RE.match(t)
+            if m:
+                chars.setdefault(m.group(1), []).append((t, m.group(2)))
+    _replace(CHAR_BASE, chars)
+
+
+def reload_if_changed():
+    """Re-reads the dictionary if a data file changed. Returns True if it was reloaded.
+    If the new files cannot be read, the previous dictionary stays in use."""
+    global _STAMP
+    stamp = _data_stamp()
+    if stamp == _STAMP:
+        return False
+    with _RELOAD_LOCK:
+        stamp = _data_stamp()
+        if stamp == _STAMP:
+            return False
+        first = _STAMP is None
+        _STAMP = stamp           # do not retry a broken file on every run
+        try:
+            _rebuild()
+        except Exception as e:  # noqa: BLE001
+            if first:
+                raise
+            print(f"[Anima Prompt Generator] dictionary reload failed, keeping the old one: {e}")
+            return False
+        if not first:
+            print(f"[Anima Prompt Generator] dictionary reloaded: {len(TAGS)} tags, {len(ALIASES)} aliases")
+        return not first
+
+
+reload_if_changed()
 
 
 def _escape(name):
@@ -171,6 +232,10 @@ def _pick_character(cands, series_hint):
 class AnimaPromptBuilder:
     @classmethod
     def INPUT_TYPES(cls):
+        try:
+            reload_if_changed()      # pressing R in ComfyUI picks up a freshly updated dictionary
+        except Exception:  # noqa: BLE001
+            pass
         return {"required": {
             "text": ("STRING", {"multiline": True, "default": "", "tooltip":
                 "Answer of the LLM in 'key: value' lines. Connect the llm_text output of the LLM node here."}),
@@ -199,7 +264,7 @@ class AnimaPromptBuilder:
     RETURN_TYPES = ("STRING", "STRING")
     RETURN_NAMES = ("prompt", "report")
     FUNCTION = "run"
-    CATEGORY = "anima"
+    CATEGORY = "Anima Prompt Generator"
 
     # ---- gaze tags ("looking ...") always go to action ----
     @staticmethod
@@ -345,6 +410,10 @@ class AnimaPromptBuilder:
     # ---- assemble the final prompt ----
     def run(self, text, quality_tags, artist_tag, default_rating, drop_unknown, fuzzy_fix,
             strip_canonical_appearance=True):
+        try:
+            reload_if_changed()      # the dictionary may have been updated since the last run
+        except Exception:  # noqa: BLE001
+            pass
         report = []
         groups, description = self._parse(text, report)
         self._move_gaze(groups, report)

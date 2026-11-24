@@ -1,12 +1,12 @@
 [project]
 name = "anima-prompt-generator"
 description = "Turns a short idea into a checked Danbooru-tag prompt for the Anima image model: a local LLM writes the tags, a builder validates them against a dictionary and assembles the prompt."
-version = "0.1.0"
+version = "0.1.1"
 license = { file = "LICENSE" }
 readme = "README.md"
 authors = [{ name = "GUntilB" }]
 requires-python = ">=3.9"
-dependencies = []
+dependencies = ["requests"]
 classifiers = [
     "Operating System :: OS Independent",
 ]

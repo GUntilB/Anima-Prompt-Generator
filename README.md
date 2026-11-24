@@ -84,7 +84,7 @@ alias: relaxed -> relaxing
 
 ## What it does
 
-- Checks every tag against a dictionary of about 33,800 Danbooru tags and about 7,500 aliases.
+- Checks every tag against a dictionary of about 80,000 Danbooru tags and about 17,000 aliases.
 - Finds the character as `name (series)` using the series and the popularity of the tag, and fixes the order of the name (`misato katsuragi` -> `katsuragi misato`).
 - Fixes hyphenated tags (`close up` -> `close-up`) and near-miss tags that differ only by a common ending (`indoor` -> `indoors`).
 - Removes tags that are not in the dictionary (except in `character` and `series`, where rare names are kept).
@@ -100,7 +100,7 @@ alias: relaxed -> relaxing
 
 - ComfyUI with the Anima model files (see the note inside the example workflow).
 - [LM Studio](https://lmstudio.ai/) with its local server enabled. Only LM Studio has been tested. Servers that offer `/v1/models` and `/v1/chat/completions` (Ollama, llama.cpp server and similar) may work if you type the model name into `model_override`, but this is untested: the model list will not show their models, and the status may contain a harmless note that the model could not be unloaded.
-- No extra Python packages are needed.
+- The dictionary updater uses the `requests` package. It is normally already in the Python environment of ComfyUI and is listed in `requirements.txt`; the other nodes do not need it.
 
 Tested on **NVIDIA GeForce RTX 3060 12 GB, 32 GB DDR5**, LM Studio, thinking off, temperature 0.5. Other hardware has not been tested.
 
@@ -174,6 +174,32 @@ Outputs: `prompt` (the final prompt) and `report` (what was changed).
 | `fuzzy_fix` | Fix near-miss tags that differ only by a common ending. |
 | `strip_canonical_appearance` | Remove hair and eye colors written for a named character. |
 
+### Anima Dictionary Updater
+
+Three buttons that refresh the dictionary from Danbooru: **Update tags from Danbooru**, **Update aliases from Danbooru** and **Update tags and aliases**. Below them a status field shows the progress and the result. The node has no connections and never runs in a workflow: put it on the canvas next to the subgraph and press a button.
+
+Two fields above the buttons apply to the tags (the aliases button ignores them), and the values you set are saved with the workflow:
+
+- `min_posts`: the smallest number of posts a tag needs. The default is 100, which gives about 80,000 tags and takes about a minute. **Lower values mean far more tags and a much slower update.** With 1 the whole Danbooru tag list is downloaded (hundreds of thousands of tags or more): the update takes a very long time, the files become very large, and the builder needs more memory and works slower. Higher values give a smaller, faster dictionary.
+- `include_deprecated`: on by default. Danbooru flags some tags as deprecated (for example `looking away`), although posts may still use them and a model may know them, so they are kept. Turn it off to leave them out.
+
+- **Tags**: all tags with at least `min_posts` posts (general, artists, series, characters, meta) are written to `data/auto/tags.csv`. Deprecated tags are kept unless `include_deprecated` is turned off; the most used of them are listed in `data/auto/update_report.txt` either way.
+- **Aliases**: all active Danbooru aliases whose target tag is in the dictionary are written to `data/auto/aliases.csv`. The button for aliases only uses the tags you already have (generated and your own); the button for both updates the tags first.
+- The files are replaced only after everything has been downloaded and checked. If Danbooru answers incompletely or oddly (too few tags, a broken order), the files stay as they were. The previous version is kept next to them as `tags.backup.csv` and `aliases.backup.csv`.
+- The dictionary is re-read when a file changes: no restart is needed, the next run (or `R`) uses the new data. `data/manual/` is never touched.
+- The network is used only when you press a button or run the command below, and only `danbooru.donmai.us` is contacted. Updating the node pack brings back the files of its release; press the button again if you want the newest data.
+
+The same update from the console, with the Python that runs ComfyUI (for the portable Windows build `python_embeded\python.exe`), from the folder of the node pack:
+
+```
+python tools/update_tags.py tags       # tags only
+python tools/update_tags.py aliases    # aliases only, checked against the current tags
+python tools/update_tags.py all        # tags, then aliases
+python tools/update_tags.py probe      # two pages of each list, writes nothing: a quick check of the Danbooru API
+```
+
+Options: `--min-posts N` (default 100; mind the warning above), `--skip-deprecated`, `--force` (skip the check against the old files), `--lang en|ru`. On Windows you can start it with `py` instead of `python`.
+
 ## Prompt profiles
 
 The system prompt that tells the LLM how to answer lives in text files:
@@ -194,7 +220,7 @@ Both built-in prompts tell the model to write adult characters only (18+). The f
 
 The dictionary lives in `data/`:
 
-- `data/auto/tags.csv` and `data/auto/aliases.csv`: generated files, an updater may overwrite them. At the moment 17,541 general tags, 673 artists, 3,347 series, 12,067 characters and 214 meta tags.
+- `data/auto/tags.csv` and `data/auto/aliases.csv`: generated files, the updater node (see Anima Dictionary Updater) overwrites them. At the moment 25,041 general tags, 26,079 artists, 5,891 series, 22,922 characters and 457 meta tags (tags with at least 100 posts, deprecated tags included).
 - `data/manual/tags.csv` and `data/manual/aliases.csv`: your own edits. They are read after the generated files and always win; updates never touch them.
 
 Add your own tag to `data/manual/tags.csv` (columns `tag,category,post_count`; category 0 general, 1 artist, 3 series, 4 character, 5 meta):
@@ -211,7 +237,7 @@ alias,tag
 swimwear,swimsuit
 ```
 
-Restart ComfyUI after editing the files. Where the data comes from is described in `data/SOURCES.md`. Updating the dictionary from Danbooru is planned.
+After editing the files, run the workflow again or press `R`: the dictionary is re-read when a file changes, no restart is needed. Where the data comes from is described in `data/SOURCES.md`.
 
 ## Cache
 
@@ -224,6 +250,7 @@ python tests/run_tests.py                              # fast mode: fixed answer
 python tests/run_tests.py --live                       # real requests to LM Studio
 python tests/run_tests.py --live --record              # save the LLM answers to tests/recorded/
 python tests/run_tests.py --live --model NAME --out last_run_NAME.txt   # compare models
+python tests/test_updater.py                           # the dictionary updater against a fake Danbooru server, no network
 ```
 
 The log with the final prompts is written to `tests/last_run.txt`. Do not use `--record` when you compare models, it overwrites the recorded answers.
@@ -238,6 +265,8 @@ The log with the final prompts is written to `tests/last_run.txt`. Do not use `-
 | `answer cut off by max_tokens, raise the limit` | Increase `max_tokens`. |
 | `prompt_profile is 'custom' but system_prompt is empty.` | Fill in `system_prompt` or choose `sfw` / `nsfw`. |
 | A tag disappeared from the prompt | Read the `report` output; add the tag to `data/manual/tags.csv` if it is valid. |
+| `the 'requests' package is missing ...` in the updater status | Install it with the Python of ComfyUI: `python -m pip install requests`. |
+| `got only N tags ... the file was not changed` | Danbooru answered incompletely; the old file is untouched. Try again later. |
 
 
 ## License and credits
@@ -246,9 +275,8 @@ Code: GNU General Public License v3.0 or later, see `LICENSE`. Copyright (c) 202
 
 - The Anima model and its files: circlestone-labs (Hugging Face).
 - Tag names, categories and post counts come from Danbooru; this project is not affiliated with Danbooru.
-- The dictionary was completed with the dataset `newtextdoc1111/danbooru-tag-csv` (MIT), see `data/SOURCES.md`.
 - LM Studio and ComfyUI are products of their respective authors.
 
 ## Ideas for later
 
-Full support for OpenAI-compatible servers (model list read from `server_url`, no unload attempt where the server has none, retries for stricter servers) and an updater for the dictionary from Danbooru.
+Full support for OpenAI-compatible servers (model list read from `server_url`, no unload attempt where the server has none, retries for stricter servers).

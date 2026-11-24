@@ -61,6 +61,35 @@ CATALOG = {
         "empty_answer": "Empty answer from the model.",
         "generated": "generated in {seconds:.1f} s",
         "not_cached": "answer format not recognized, not saved to the cache",
+        # ---- dictionary updater ----
+        "update_started": "update started...",
+        "update_tags_progress": "tags: page {page}, collected {count}",
+        "update_aliases_progress": "aliases: page {page}, matched {count} of {seen} seen",
+        "update_http_status": "Danbooru answered HTTP {code}: {url}",
+        "update_http_failed": "request failed after {tries} tries ({error}): {url}",
+        "update_no_requests": ("the 'requests' package is missing in the Python environment of ComfyUI; "
+                               "install it with: python -m pip install requests"),
+        "update_bad_response": "unexpected answer from Danbooru (a list was expected): {raw}",
+        "update_bad_item": "unexpected item format in the Danbooru answer: {raw}",
+        "update_bad_order": "Danbooru returned items in an unexpected order, stopped so the dictionary is not damaged",
+        "update_filter_ignored": ("Danbooru ignored the post_count filter (an item with {count} posts, "
+                                  "the minimum is {min}), stopped"),
+        "update_too_few_tags": ("got only {new} tags while the current dictionary has {old} tags with "
+                                "{min}+ posts; the file was not changed"),
+        "update_too_few_aliases": ("got only {new} aliases while the current file has {old}; "
+                                   "the file was not changed"),
+        "update_no_tags": "no tag dictionary to check the aliases against: update the tags first",
+        "update_busy": "an update is already running",
+        "update_unexpected": "update failed: {error}",
+        "update_part_tags": "tags: {count}",
+        "update_part_aliases": "aliases: {count}",
+        "update_part_deprecated": "deprecated tags skipped: {count} (most used: {top})",
+        "update_part_deprecated_included": "deprecated tags included: {count} (most used: {top})",
+        "update_bad_min_posts": "the minimum number of posts must be a whole number, got: {value}",
+        "update_done": "done in {seconds:.0f} s. {parts}",
+        "update_probe": ("probe ok: {tags} tags and {aliases} aliases in {pages} pages each, "
+                         "ids go down, nothing was written"),
+        "update_idle": "ready",
     },
     "ru": {
         "skipped_line": "строка без группы пропущена: {line}",
@@ -99,6 +128,35 @@ CATALOG = {
         "empty_answer": "Пустой ответ от модели.",
         "generated": "сгенерировано за {seconds:.1f} с",
         "not_cached": "формат ответа не распознан, в кэш не сохранён",
+        # ---- обновление словаря ----
+        "update_started": "обновление запущено...",
+        "update_tags_progress": "теги: страница {page}, собрано {count}",
+        "update_aliases_progress": "алиасы: страница {page}, подошло {count} из {seen} просмотренных",
+        "update_http_status": "Danbooru ответил HTTP {code}: {url}",
+        "update_http_failed": "запрос не удался после {tries} попыток ({error}): {url}",
+        "update_no_requests": ("в Python-окружении ComfyUI нет пакета requests; "
+                               "установи его командой: python -m pip install requests"),
+        "update_bad_response": "неожиданный ответ Danbooru (ожидался список): {raw}",
+        "update_bad_item": "неожиданный формат элемента в ответе Danbooru: {raw}",
+        "update_bad_order": "Danbooru вернул элементы в неожиданном порядке, остановлено, чтобы не испортить словарь",
+        "update_filter_ignored": ("Danbooru проигнорировал фильтр post_count (элемент с {count} постами, "
+                                  "минимум {min}), остановлено"),
+        "update_too_few_tags": ("получено всего {new} тегов, а в текущем словаре {old} тегов с "
+                                "{min}+ постами; файл не изменён"),
+        "update_too_few_aliases": ("получено всего {new} алиасов, а в текущем файле {old}; "
+                                   "файл не изменён"),
+        "update_no_tags": "нет словаря тегов, по которому проверять алиасы: сначала обнови теги",
+        "update_busy": "обновление уже идёт",
+        "update_unexpected": "обновление не удалось: {error}",
+        "update_part_tags": "теги: {count}",
+        "update_part_aliases": "алиасы: {count}",
+        "update_part_deprecated": "пропущено устаревших тегов: {count} (самые частые: {top})",
+        "update_part_deprecated_included": "включено устаревших тегов: {count} (самые частые: {top})",
+        "update_bad_min_posts": "минимум постов должен быть целым числом, получено: {value}",
+        "update_done": "готово за {seconds:.0f} с. {parts}",
+        "update_probe": ("проба прошла: {tags} тегов и {aliases} алиасов за {pages} стр., "
+                         "id убывают, ничего не записано"),
+        "update_idle": "готово к работе",
     },
 }
 

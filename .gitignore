@@ -4,4 +4,5 @@ __pycache__/
 lmstudio_cache.json
 tests/last_run*.txt
 data/auto/*.backup.csv
-data/auto/tags_extra.csv
+.ruff_cache/
+data/auto/update_report.txt
